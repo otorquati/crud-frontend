@@ -33,10 +33,10 @@ export default function TableList({ handleOpen }) {
           <thead>
             <tr>
               <th>id</th>
-              <th>Name</th>
-              <th>email</th>
-              <th>Job</th>
-              <th>taxa</th>
+              <th>Nome</th>
+              <th>Email</th>
+              <th>Trabalho</th>
+              <th>Taxa</th>
               <th>Situação</th>
             </tr>
           </thead>

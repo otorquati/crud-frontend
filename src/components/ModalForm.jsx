@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function ModalForm(isOpen, onClose, mode, OnSubmit) {
+export default function ModalForm({ isOpen, onClose, mode, OnSubmit }) {
   const [rate, setRate] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -10,6 +10,12 @@ export default function ModalForm(isOpen, onClose, mode, OnSubmit) {
   const handleStatusChange = (e) => {
     setStatus(e.target.value === "Ativo");
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onClose();
+  };
+
   return (
     <>
       <dialog id="my_modal_3" className="modal" open={isOpen}>
@@ -17,9 +23,9 @@ export default function ModalForm(isOpen, onClose, mode, OnSubmit) {
           <h3 className="font-bold text-lg">
             {mode === "edit" ? "Edição de Cliente" : "Detalhes do Cliente"}
           </h3>
-          <form method="dialog">
+          <form method="dialog" onSubmit={handleSubmit}>
             {/* if there is a button in form, it will close the modal */}
-            <label className="input input-bordered flex items-center gap-2 my-4">
+            <label className="input input-bordered flex w-full items-center gap-2 my-4">
               Nome
               <input
                 type="text"
@@ -28,8 +34,8 @@ export default function ModalForm(isOpen, onClose, mode, OnSubmit) {
                 onChange={(e) => setName(e.target.value)}
               />
             </label>
-            <label className="input input-bordered flex items-center gap-2 my-4">
-              email
+            <label className="input input-bordered flex w-full items-center gap-2 my-4">
+              Email
               <input
                 type="text"
                 className="grow"
@@ -37,7 +43,7 @@ export default function ModalForm(isOpen, onClose, mode, OnSubmit) {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </label>
-            <label className="input input-bordered flex items-center gap-2 my-4">
+            <label className="input input-bordered flex w-full items-center gap-2 my-4">
               Trabalho
               <input
                 type="text"
@@ -47,7 +53,7 @@ export default function ModalForm(isOpen, onClose, mode, OnSubmit) {
               />
             </label>
             <div className="flex mb-4 my-4 justify-between">
-              <label className="input input-bordered flex items-center gap-2">
+              <label className="input input-bordered mr-4 flex items-center gap-2">
                 Taxa
                 <input
                   type="number"
@@ -59,7 +65,7 @@ export default function ModalForm(isOpen, onClose, mode, OnSubmit) {
               <select
                 value={status ? "Activo" : "Inativo"}
                 defaultValue="Selecione uma situação"
-                className="select select-bordered w-full max-w-xs"
+                className="select select-bordered max-w-xs gap-4"
                 onChange={handleStatusChange}
               >
                 <option>Ativo</option>
